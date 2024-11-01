@@ -15,7 +15,7 @@ import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
 
-  apiKey: "",
+  apiKey: process.env.FB_API_KEY,
 
   authDomain: "team-13-cfg.firebaseapp.com",
 
@@ -23,11 +23,11 @@ const firebaseConfig = {
 
   storageBucket: "team-13-cfg.firebasestorage.app",
 
-  messagingSenderId: "1057549171332",
+  messagingSenderId: process.env.FB_MSG_SENGER_ID,
 
-  appId: "1:1057549171332:web:83adfb0b7bc935630020d1",
+  appId: process.env.FB_APP_ID,
 
-  measurementId: "G-8PN2XE26H7"
+  measurementId: process.env.FB_MEASUREMENT_ID,
 
 };
 
