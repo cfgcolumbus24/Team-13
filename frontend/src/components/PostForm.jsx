@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
+import { db } from '../firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
 
 const PostForm = ({ onSubmit }) => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit({ title, content });
+    
+        try {
+            // Add a new document with a generated ID
+            await addDoc(collection(db, "posts"), {
+                title: title,
+                content: content,
+                createdAt: new Date()  // Optional, to track post creation time
+            });
+            alert("Post created successfully!");
+            setTitle('');  // Clear form fields
+            setContent('');
+        } catch (e) {
+            console.error("Error adding document: ", e);
+            alert("Error creating post");
+        }
     };
 
     return (
