@@ -42,3 +42,5 @@ build/Release
 *.tgz
 .yarn-integrity
 .dataconnect
+
+pathways.txt
