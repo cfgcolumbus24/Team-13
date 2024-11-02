@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const ForumPage = () => {
     const [posts, setPosts] = useState([]);
@@ -9,7 +9,8 @@ const ForumPage = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const querySnapshot = await getDocs(collection(db, "posts"));
+                const postsQuery = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(postsQuery);
                 const postsData = querySnapshot.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
