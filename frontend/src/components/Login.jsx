@@ -43,9 +43,9 @@ const Login = ({ setUser }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100">
-      <header className="bg-pink-600 p-8 shadow-md fixed top-0 left-0 w-full z-50">
-        <h1 className="text-5xl font-extrabold text-center text-white">Login</h1>
-        <p className="text-lg text-center text-white opacity-75 mt-2">Access your account</p>
+      <header className="bg-gray-800 p-8 shadow-md fixed top-0 left-0 w-full mt-50">
+        <h1 className="text-5xl font-extrabold text-center text-pink-600">Login</h1>
+        <p className="text-lg text-center text-pink-600 opacity-75 mt-2">Access your account</p>
       </header>
 
       <main className="pt-24 pb-16 px-4 md:px-10 w-full max-w-md flex flex-col items-center mt-16">
