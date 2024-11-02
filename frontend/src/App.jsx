@@ -1,17 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ForumPage from './pages/ForumPage';
-import CreatePostPage from './pages/CreatePostPage';
 import PostDetail from './pages/PostDetail';
+import AuthComponent from './components/AuthComponent'; // Import the Auth component
 
-const App = () => (
-    <Router>
-        <Routes>
-            <Route path="/create-post" element={<CreatePostPage />} />
-            <Route path="/forum" element={<ForumPage />} />
-            <Route path="/forum/:postId" element={<PostDetail />} />
-        </Routes>
-    </Router>
-);
+function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/forum" element={<ForumPage />} />
+                <Route path="/post/:id" element={<PostDetail />} />
+                <Route path="/auth" element={<AuthComponent />} /> {/* Auth Route */}
+            </Routes>
+        </Router>
+    );
+}
 
 export default App;
