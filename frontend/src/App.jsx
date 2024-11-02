@@ -35,10 +35,10 @@ export default function App() {
           <Route path="/home" element={<Home user={user} onLogout={handleLogout} />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
           <Route path="/lesson-plans" element={<LessonPlanGenerator />} />
-          <Route path="/forum" element={<PostForm />} />
+          <Route path="/forum" element={<ForumPage />} />
           <Route path="/posts/:postId" element={<PostDetail />} />
           <Route path="/auth" element={<AuthComponent />} />
-          <Route path="/create-post" element={<CreatePostPage />} />
+          <Route path="/create-post" element={<PostForm />} />
         </Routes>
       </div>
     </Router>
