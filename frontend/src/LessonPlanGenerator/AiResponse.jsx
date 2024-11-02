@@ -6,9 +6,11 @@ export default function AiResponse({ subject, aiResponse }) {
   // text for when we request an Ai response
   // hard coded besides the subject
   return (
-    <div className="mt-4 bg-gray-50 rounded-md p-4">
-      <h3 className="text-sm font-medium text-gray-700 mb-2">AI Response</h3>
-      <p className="text-sm text-gray-600">{aiResponse}</p>
+    <div className="mt-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 shadow-inner">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+        AI Generated Lesson Plan
+      </h3>
+      <p className="text-gray-600 whitespace-pre-line">{aiResponse}</p>
     </div>
   );
 }

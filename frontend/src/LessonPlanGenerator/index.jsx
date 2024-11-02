@@ -1,52 +1,41 @@
-import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+// components/LessonPlannerChatbox/index.jsx
+// eslint-disable-next-line no-unused-vars
+import AiResponse from "./AiResponse";
+import Footer from "./Footer";
+import Header from "./Header";
 import SubjectSelect from "./SubjectSelect";
+import { useState } from "react";
 
-export default function LessonPlanGenerator() {
-  // here we will store the state of the form
+// Ensure Tailwind CSS is being imported
+
+export default function LessonPlannerChatbox() {
   const [subject, setSubject] = useState("");
   const [aiResponse, setAiResponse] = useState("");
 
-  const handleSubjectChange = (value) => {
+  const handleSubjectChange = (event) => {
+    const value = event.target.value;
     setSubject(value);
     setAiResponse(`Here's a sample lesson plan for ${value}...`);
   };
 
   return (
     <div className="container mx-auto p-4">
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle>Lesson Plan Generator</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <SubjectSelect onChange={handleSubjectChange} />
-            {subject && (
-              <Card className="mt-4 bg-muted">
-                <CardHeader>
-                  <CardTitle className="text-sm font-medium">
-                    AI Response
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm">{aiResponse}</p>
-                </CardContent>
-              </Card>
-            )}
+      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <Header />
+
+        <div className="p-6">
+          <div className="p-6 space-y-4">
+            <SubjectSelect
+              subject={subject}
+              onSubjectChange={handleSubjectChange}
+            />
+
+            {subject && <AiResponse aiResponse={aiResponse} />}
           </div>
-        </CardContent>
-        <CardFooter className="justify-between">
-          <p className="text-sm text-muted-foreground">
-            Select a subject to generate a lesson plan.
-          </p>
-        </CardFooter>
-      </Card>
+        </div>
+
+        <Footer />
+      </div>
     </div>
   );
 }
