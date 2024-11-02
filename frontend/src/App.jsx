@@ -10,6 +10,7 @@ import PostDetail from './pages/PostDetail';
 import AuthComponent from './components/AuthComponent';
 import LoginPage from './components/Login';
 import CreatePostPage from './pages/CreatePostPage';
+import PostForm from './components/PostForm';
 
 import './App.css';
 import headerImage from './Edutinity_logo.png';
@@ -120,7 +121,7 @@ function AppContent() {
           <Route path="/" element={<HomePage recentPost={recentPost} />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
           <Route path="/lesson-plans" element={<LessonPlanGenerator />} />
-          <Route path="/forum" element={<ForumPage />} />
+          <Route path="/forum" element={<PostForm />} />
           <Route path="/posts/:postId" element={<PostDetail />} />
           <Route path="/auth" element={<AuthComponent />} />
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
