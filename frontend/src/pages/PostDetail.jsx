@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { db } from '../../firebase'; // Ensure this path is correct
 import { doc, getDoc, collection, getDocs, query, orderBy, addDoc } from 'firebase/firestore';
 
-const PostDetail = () => {
+const PostDetail = ({ user }) => { // Accept user prop
     const { postId } = useParams();
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
@@ -39,11 +39,12 @@ const PostDetail = () => {
         if (!newComment) return;
 
         try {
+            const user = JSON.parse(localStorage.getItem('user'));
             // Add a new comment to the comments subcollection
             await addDoc(collection(db, "posts", postId, "comments"), {
                 content: newComment,
                 createdAt: new Date(),
-                author: "Your Name", // Replace with actual user info if available
+                author: user.username, // Use the actual user's username
             });
             setNewComment(""); // Clear input
 
@@ -67,6 +68,7 @@ const PostDetail = () => {
             <p className="text-sm text-gray-500">
                 {post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleString() : 'No date available'}
             </p>
+            <p className="text-sm text-gray-500 font-semibold">Posted by: {post.author}</p> {/* Display the author's name here */}
 
             <h2 className="text-xl font-semibold mt-6 mb-2">Comments</h2>
             <form onSubmit={handleCommentSubmit} className="mb-4">
@@ -82,7 +84,7 @@ const PostDetail = () => {
             <div className="space-y-2">
                 {comments.map(comment => (
                     <div key={comment.id} className="p-2 border-b">
-                        <p className="font-semibold">{comment.author}</p>
+                        <p className="font-semibold">{comment.author}</p> {/* Display the commenter's username here */}
                         <p>{comment.content}</p>
                         <p className="text-sm text-gray-500">
                             {new Date(comment.createdAt.seconds * 1000).toLocaleString()}

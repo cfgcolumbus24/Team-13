@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const ForumPage = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -32,6 +33,15 @@ const ForumPage = () => {
     return (
         <div className="p-4 max-w-4xl mx-auto">
             <h1 className="text-2xl font-semibold mb-6">Forum Posts</h1>
+            
+            {/* Button to create a new post */}
+            <button 
+                onClick={() => navigate('/create-post')} // Redirects to create post page
+                className="mb-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+                Create New Post
+            </button>
+            
             <div className="space-y-4">
                 {posts.map(post => (
                     <div key={post.id} className="p-4 bg-white shadow-md rounded-lg">
