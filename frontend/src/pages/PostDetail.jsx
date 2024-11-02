@@ -46,7 +46,12 @@ const PostDetail = () => {
                 author: "Your Name", // Replace with actual user info if available
             });
             setNewComment(""); // Clear input
-            // Optionally, you can fetch comments again to show the new comment without refreshing
+
+            // Optionally, fetch comments again to include the new comment
+            const commentsQuery = query(collection(db, "posts", postId, "comments"), orderBy("createdAt", "desc"));
+            const commentsSnapshot = await getDocs(commentsQuery);
+            const commentsData = commentsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setComments(commentsData);
         } catch (error) {
             console.error("Error adding comment: ", error);
         }
