@@ -5,6 +5,7 @@ import PostDetail from './pages/PostDetail';
 import AuthComponent from './components/AuthComponent'; // Import the Auth component
 import LoginPage from './components/Login';
 import { db } from '../firebase'
+import CreatePostPage from './pages/CreatePostPage';
 
 function App() {
     const [user, setUser] = useState(null);
@@ -28,9 +29,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/forum" element={<ForumPage />} />
-                <Route path="/post/:id" element={<PostDetail />} />
+                <Route path="/posts/:postId" element={<PostDetail />} />
                 <Route path="/auth" element={<AuthComponent />} /> {/* Auth Route */}
                 <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+                <Route path="/create-post" element={<CreatePostPage />} />
             </Routes>
         </Router>
     );
