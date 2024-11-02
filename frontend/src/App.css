@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #root {
+#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -22,25 +22,52 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Sneak Peek Styles */
+.sneak-peek {
+  background: linear-gradient(to right, #f3e8ff, #e0f7fa);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+  width: 50%; /* Takes up half the width */
+  max-width: 600px; /* Ensures it doesn't get too wide on large screens */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.sneak-peek h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.sneak-peek h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.sneak-peek p {
+  color: #555;
+  font-size: 1.25rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .home-page {
+    justify-content: center; /* Center sneak peek on smaller screens */
+    padding: 1.5rem;
+  }
+  .sneak-peek {
+    padding: 2rem;
+    width: 100%; /* Full width on small screens */
+  }
+  .sneak-peek h2 {
+    font-size: 1.75rem;
+  }
+  .sneak-peek h3 {
+    font-size: 1.5rem;
+  }
+  .sneak-peek p {
+    font-size: 1rem;
   }
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
