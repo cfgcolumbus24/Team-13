@@ -1,8 +1,11 @@
+import React, { useState } from "react";
+import { db } from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import AIResponse from "./AiResponse";
 import Footer from "./Footer";
 import Header from "./Header";
 import SubjectSelector from "./SubjectSelect";
-import React, { useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import './../App.css';
 
@@ -12,6 +15,7 @@ export default function LessonPlannerChatbox() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("generate");
   const [feedbackPrompt, setFeedbackPrompt] = useState("");
+  const navigate = useNavigate();
 
   const handleSubjectChange = async (event) => {
     const selectedSubject = event.target.value;
@@ -25,7 +29,6 @@ export default function LessonPlannerChatbox() {
     if (!subject) return; // Don't proceed if no subject is selected
     setIsLoading(true);
     try {
-      console.log("Fetching AI response...");
       const response = await fetch("http://localhost:3000/api/lesson", {
           method: "POST",
           headers: {
@@ -41,6 +44,7 @@ export default function LessonPlannerChatbox() {
       const data = await response.json();
       const txt = data.data;
       setAiResponse(txt);
+      await postToForum("Lesson Plan", txt); // Post the lesson plan
       console.log("Lesson plan generated successfully:", txt);
     } catch (error) {
       console.error("Error fetching AI response:", error);
@@ -56,7 +60,6 @@ export default function LessonPlannerChatbox() {
 
     setIsLoading(true);
     try {
-      console.log("Fetching feedback...");
       const response = await fetch("http://localhost:3000/api/giveFeedback", {
           method: "POST",
           headers: {
@@ -72,12 +75,36 @@ export default function LessonPlannerChatbox() {
       const data = await response.json();
       const txt = data.data;
       setAiResponse(txt);
+      await postToForum("User Feedback", txt); // Post the feedback
       console.log("Feedback received successfully:", txt);
     } catch (error) {
       console.error("Error fetching feedback:", error);
       setAiResponse("Sorry, there was an error fetching feedback. Please try again.");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const postToForum = async (title, content) => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        alert("You must be logged in to post to the forum.");
+        return;
+      }
+
+      const post = {
+        title: title,
+        content: content,
+        category: subject, 
+        createdAt: new Date(),
+        author: user.username,
+      }
+      await addDoc(collection(db, "posts"), post);
+      console.log(post);
+      console.log("Post added to the forum successfully.");
+    } catch (error) {
+      console.error("Error posting to forum:", error);
     }
   };
 
