@@ -21,19 +21,19 @@ function readTextFile(filePath) {
 }
 
 async function callGoogleGeminiAPI(context, question) {
-    const result = await model.generateContent([context, question]);
-    const txt = result.response.text();
-    console.log(txt);
+    const result = await model.generateContent([context, question]); 
+    const txt = result.response.text(); 
     return txt;
 }
 
-const filePath = path.join(__dirname, 'pathways.txt'); 
-
-readTextFile(filePath)
-    .then(context => {
-        const question = "I want to write a lesson plan in general for one day of instruction for 4th grade math students. Don't be too ambitious only have about 2-3 tasks. use the context to help out and only return that lesson plan in plain text";
-        return callGoogleGeminiAPI(context, question);
-    })
-    .catch(err => {
-        console.error('Error reading file:', err);
-    });
+export async function processLessonPlan(question) {
+    const filePath = path.join(__dirname, 'pathways.txt');
+    
+    try {
+        const context = await readTextFile(filePath);
+        const lessonPlan = await callGoogleGeminiAPI(context, question);
+        return lessonPlan;
+    } catch (err) {
+        console.error('Error:', err);
+    }
+}
