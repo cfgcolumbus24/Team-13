@@ -3,10 +3,17 @@
 @tailwind utilities;
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  /* Fill the entire width of the screen */
+  height: 100vh;
+  /* Fill the entire height of the viewport */
+  margin: 0;
+  /* Remove margin to avoid gaps */
+  /* Keep padding for inner spacing */
   text-align: center;
+  /* Center the text */
+  box-sizing: border-box;
+  /* Include padding in the total width/height calculation */
 }
 
 .logo {
@@ -15,6 +22,7 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -59,15 +67,19 @@
   .home-page {
     padding: 1rem;
   }
+
   .sneak-peek {
     padding: 1.5rem;
   }
+
   .sneak-peek h2 {
     font-size: 1.75rem;
   }
+
   .sneak-peek h3 {
     font-size: 1.25rem;
   }
+
   .sneak-peek p {
     font-size: 1rem;
   }
