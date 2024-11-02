@@ -11,7 +11,6 @@ const CreatePostPage = () => {
         <div>
             <Navbar />
             <main style={{ paddingTop: '60px !important'}}> 
-                <h1>Create a New Post</h1>
                 <PostForm onSubmit={handlePostSubmit} />
             </main>
         </div>

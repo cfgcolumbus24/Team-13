@@ -40,14 +40,14 @@ const PostForm = () => {
     return (
         <div className="min-h-screen flex flex-col items-center bg-gray-100">
             {/* Fixed Header */}
-            <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed top-0 left-0 w-full z-50">
+            <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed left-0 w-full z-50 mt-10"> {/* mt-8 is equal to 2rem, adjust as necessary */}
                 <h1 className="text-5xl font-extrabold text-center text-white">Create Post</h1>
-                <p className="text-lg text-center text-white opacity-75 mt-2">Share your thoughts</p>
+                <p className="text-lg text-center text-white opacity-75 mt-2">Share your thoughts!</p>
             </header>
 
             {/* Main Content Area */}
             <main className="pt-24 pb-16 px-4 md:px-10 w-full max-w-md flex flex-col items-center mt-16">
-                <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md space-y-4 w-full">
+                <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md space-y-4 w-full mt-10">
                     <div>
                         <label className="block text-gray-700 mb-2">Title</label>
                         <input
