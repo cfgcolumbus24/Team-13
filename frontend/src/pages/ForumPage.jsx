@@ -47,6 +47,7 @@ const ForumPage = () => {
                     <div key={post.id} className="p-4 bg-white shadow-md rounded-lg">
                         <Link to={`/posts/${post.id}`} className="text-lg font-bold text-blue-500 hover:underline">
                             {post.title}
+                            <p className="text-gray-700">{post.category}</p>
                         </Link>
                         <p className="text-gray-700">{post.content}</p>
                         <p className="text-sm text-gray-500 mt-2">
