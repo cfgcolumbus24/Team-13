@@ -81,8 +81,7 @@ const PostForm = () => {
                             <option value="Math">Math</option>
                             <option value="Science">Science</option>
                             <option value="Reading">Reading</option>
-                            <option value="Music">Music</option>
-                            <option value="Art">Art</option>
+                            <option value="Writing">Music</option>
                         </select>
                     </div>
                     
