@@ -6,9 +6,10 @@ function NewsletterPage() {
   const [imageFile, setImageFile] = useState(null);
   const [posts, setPosts] = useState([]);
 
+  // Load posts from localStorage on component mount
   useEffect(() => {
-    const savedPosts = JSON.parse(localStorage.getItem('posts'));
-    if (savedPosts) setPosts(savedPosts);
+    const savedPosts = JSON.parse(localStorage.getItem('posts')) || [];
+    setPosts(savedPosts);
   }, []);
 
   const handlePost = () => {
@@ -22,19 +23,31 @@ function NewsletterPage() {
       timestamp: new Date().toLocaleString(),
     };
 
+    // Update the posts array and save to localStorage
     const updatedPosts = [newPost, ...posts];
     setPosts(updatedPosts);
     setPostHeading('');
     setCurrentPost('');
     setImageFile(null);
 
+    // Save all posts to localStorage
     localStorage.setItem('posts', JSON.stringify(updatedPosts));
+
+    // Save the latest post separately for easy access on the homepage
+    localStorage.setItem('latestPost', JSON.stringify(newPost));
   };
 
   const handleDelete = (id) => {
     const updatedPosts = posts.filter((post) => post.id !== id);
     setPosts(updatedPosts);
     localStorage.setItem('posts', JSON.stringify(updatedPosts));
+
+    // Update the latest post in localStorage if the latest post is deleted
+    if (updatedPosts.length > 0) {
+      localStorage.setItem('latestPost', JSON.stringify(updatedPosts[0]));
+    } else {
+      localStorage.removeItem('latestPost'); // Remove latest post if no posts are left
+    }
   };
 
   return (
@@ -45,6 +58,7 @@ function NewsletterPage() {
       </header>
 
       <main className="pt-48 pb-16 px-4 md:px-10 w-full max-w-7xl flex flex-col md:flex-row gap-8 md:gap-12">
+        {/* Create a Post Form */}
         <div className="w-full md:w-2/5 bg-gray-200 p-6 md:p-8 rounded-lg shadow-lg space-y-4 md:space-y-6">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">Create a Post</h2>
           <input
@@ -74,6 +88,7 @@ function NewsletterPage() {
           </button>
         </div>
 
+        {/* Posts Display */}
         <div className="w-full md:w-3/5 h-auto md:h-[65vh] overflow-y-auto space-y-4 md:space-y-6">
           {posts.length === 0 ? (
             <p className="text-xl text-gray-600 text-center">No updates yet. Start by posting your first update!</p>
