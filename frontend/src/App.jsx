@@ -1,98 +1,127 @@
+// Imports
 import React, { useEffect, useState } from 'react';
-import headerImage from './Edutinity_logo.png';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+
+// Assets and Styles
+import headerImage from './Edutinity_logo.png';
 import './App.css';
+
+// Page Components
 import NewsletterPage from './components/NewsletterPage.jsx';
-import LessonPlanGenerator from "./LessonPlanGenerator";
+import LessonPlanGenerator from './LessonPlanGenerator';
 
-export default function App() {
-  return (
-    <>
-      {location.pathname === '/' && <Header />}
-      <main className="content">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="home-page grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-4 max-w-7xl mx-auto">
-                {/* First Row: Two Sneak Peek Boxes */}
-                <div className="sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
-                  <Link to="/newsletter" className="block hover:shadow-xl transition h-full">
-                    {recentPost ? (
-                      <>
-                        <h2 className="text-4xl font-semibold text-gray-800 mb-6">Latest Update</h2>
-                        <h3 className="text-3xl font-bold text-gray-700 mb-4">{recentPost.heading}</h3>
-                        <p className="text-lg text-gray-500 mb-6">{recentPost.timestamp}</p>
-                        <p className="text-xl text-gray-800 whitespace-pre-wrap">
-                          {recentPost.content.slice(0, 200)}...
-                        </p>
-                        <p className="text-indigo-600 mt-6 text-2xl font-semibold">Read more →</p>
-                      </>
-                    ) : (
-                      <>
-                        <h2 className="text-4xl font-semibold text-gray-800 mb-6">Welcome to Edutunity</h2>
-                        <p className="text-lg text-gray-500 mb-6">
-                          Stay updated with the latest posts. Check back soon or visit the Newsletter page to see new updates!
-                        </p>
-                        <p className="text-indigo-600 mt-6 text-2xl font-semibold">Explore more →</p>
-                      </>
-                    )}
-                  </Link>
-                </div>
-                
-                <div className="sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
-                  <h2 className="text-4xl font-semibold text-gray-800 mb-6">Forum</h2>
-                </div>
-
-                {/* Second Row: Full-Width Sneak Peek Box */}
-                <div className="md:col-span-2 sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
-                  <h2 className="text-4xl font-semibold text-gray-800 mb-6">Additional Sneak Peek</h2>
-                  <p className="text-lg text-gray-500 mb-6">
-                      Here is some additional content. Check back soon for more exciting updates!
-                  </p>
-                 <p className="text-indigo-600 mt-6 text-2xl font-semibold">Discover more →</p>
-                </div>
-              </div>
-            }
-          />
-          <Route path="/newsletter" element={<NewsletterPage />} />
-        </Routes>
-      </main>
-    </>
-  );
-}
-// Navigation bar
+// Header Component
 function Header() {
   return (
-    <header className="header">
-      <div className="logo-container">
-        <img src={headerImage} alt="Header Left Image" className="header-image" />
-      </div>
-      <div className="logo-title">
-        <h1>Edutunity</h1>
+    <header className="header flex justify-center items-center bg-gray-800 text-white py-6">
+      <div className="logo-container flex flex-col items-center">
+        <img src={headerImage} alt="Edutunity Logo" className="logo h-24" />
+        <h1 className="text-3xl font-bold mt-2">Edutunity</h1>
       </div>
     </header>
   );
 }
 
+// SneakPeekBox Component (Reusable)
+function SneakPeekBox({ title, link, content }) {
+  return (
+    <div className="sneak-peek">
+      <Link to={link} className="block hover:shadow-lg transition duration-300">
+        <h2>{title}</h2>
+        {content}
+      </Link>
+    </div>
+  );
+}
+
+// HomePage Component (Main Content for "/")
+function HomePage({ recentPost }) {
+  return (
+    <div className="home-page flex flex-col items-center gap-8 py-8">
+      {/* Main Sneak Peek Box */}
+      <SneakPeekBox
+        title={recentPost ? "Latest Update" : "Welcome to Edutunity"}
+        link="/newsletter"
+        content={
+          recentPost ? (
+            <>
+              <h3 className="text-xl font-bold text-gray-700 mb-2">{recentPost.heading}</h3>
+              <p className="text-sm text-gray-500 mb-4">{recentPost.timestamp}</p>
+              <p className="text-lg text-gray-800 mb-4">{recentPost.content.slice(0, 100)}...</p>
+              <p className="text-indigo-600 font-semibold">Read more →</p>
+            </>
+          ) : (
+            <>
+              <p className="text-lg text-gray-500 mb-4">
+                Stay updated with the latest posts. Check back soon or visit the Newsletter page to see new updates!
+              </p>
+              <p className="text-indigo-600 font-semibold">Explore more →</p>
+            </>
+          )
+        }
+      />
+
+      {/* Secondary Sneak Peek Boxes */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+        <SneakPeekBox
+          title="Chat-Bot"
+          link="/lesson-plans"
+          content={
+            <p className="text-lg text-gray-500">
+              Join discussions and explore various topics in our community forum.
+            </p>
+          }
+        />
+
+        <SneakPeekBox
+          title="Additional Sneak Peek"
+          link="/additional-content"
+          content={
+            <>
+              <p className="text-lg text-gray-500 mb-4">
+                Here is some additional content. Check back soon for more exciting updates!
+              </p>
+              <p className="text-indigo-600 font-semibold">Discover more →</p>
+            </>
+          }
+        />
+      </div>
+    </div>
+  );
+}
+
+// Main AppContent Component (Handles Routing and Layout)
 function AppContent() {
   const location = useLocation();
   const [recentPost, setRecentPost] = useState(null);
 
-  // Load the latest post from localStorage
+  // Load the latest post from localStorage when location changes
   useEffect(() => {
     const latestPost = JSON.parse(localStorage.getItem('latestPost'));
     setRecentPost(latestPost);
   }, [location.pathname]);
 
-
-
-function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <>
+      {location.pathname === '/' && <Header />}
+      <main className="content">
+        <Routes>
+          <Route path="/" element={<HomePage recentPost={recentPost} />} />
+          <Route path="/newsletter" element={<NewsletterPage />} />
+          <Route path="/lesson-plans" element={<LessonPlanGenerator />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 
-//export default App;
+// Main App Component (App Wrapper with Router)
+export default function App() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </div>
+  );
+}
