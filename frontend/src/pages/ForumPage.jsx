@@ -40,7 +40,7 @@ const ForumPage = () => {
         
             <div className="space-y-4">
                 {posts.map(post => (
-                    <div key={post.id} className="p-4 bg-white shadow-md rounded-lg">
+                    <div key={post.id} className="p-4 bg-white shadow-md rounded-lg mt-40">
                         <Link to={`/posts/${post.id}`} className="text-lg font-bold text-teal-700 hover:underline">
                             {post.title}
                             <p className="text-gray-700">{post.category}</p>
