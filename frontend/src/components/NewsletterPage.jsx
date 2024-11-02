@@ -6,7 +6,6 @@ function NewsletterPage() {
   const [imageFile, setImageFile] = useState(null);
   const [posts, setPosts] = useState([]);
 
-  // Load posts from localStorage on component mount
   useEffect(() => {
     const savedPosts = JSON.parse(localStorage.getItem('posts'));
     if (savedPosts) setPosts(savedPosts);
@@ -40,18 +39,14 @@ function NewsletterPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      {/* Fixed Header */}
       <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed top-0 left-0 w-full z-50">
         <h1 className="text-5xl font-extrabold text-center text-white">Newsletter</h1>
         <p className="text-lg text-center text-white opacity-75 mt-2">Stay updated with our weekly posts</p>
       </header>
 
-      {/* Main Content Area */}
       <main className="pt-48 pb-16 px-4 md:px-10 w-full max-w-7xl flex flex-col md:flex-row gap-8 md:gap-12">
-        {/* Left Column for Input */}
         <div className="w-full md:w-2/5 bg-gray-200 p-6 md:p-8 rounded-lg shadow-lg space-y-4 md:space-y-6">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">Create a Post</h2>
-          {/* Heading Input */}
           <input
             type="text"
             value={postHeading}
@@ -59,14 +54,12 @@ function NewsletterPage() {
             placeholder="Post Heading"
             className="w-full p-3 md:p-4 text-base md:text-lg text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
-          {/* General Text Area */}
           <textarea
             value={currentPost}
             onChange={(e) => setCurrentPost(e.target.value)}
             placeholder="Write your update here..."
             className="w-full h-32 md:h-48 p-3 md:p-4 text-base md:text-lg text-gray-800 bg-white border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
-          {/* Image Upload Input */}
           <input
             type="file"
             accept="image/*"
@@ -81,7 +74,6 @@ function NewsletterPage() {
           </button>
         </div>
 
-        {/* Right Column for Scrollable Posts */}
         <div className="w-full md:w-3/5 h-auto md:h-[65vh] overflow-y-auto space-y-4 md:space-y-6">
           {posts.length === 0 ? (
             <p className="text-xl text-gray-600 text-center">No updates yet. Start by posting your first update!</p>

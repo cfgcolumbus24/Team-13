@@ -1,59 +1,113 @@
-/* App.css */
+/* General Styles */
 body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
 }
 
+/* Header Styles */
 .header {
   position: fixed;
   top: 0;
   width: 100%;
   background-color: #282c34;
   color: white;
-  padding: 10px 20px;
+  padding: 20px 40px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
+/* Container for the new left-corner image */
+.logo-container {
+  position: absolute;
+  left: 0;
+  height: 100%; /* Make it take the full height of the header */
+  display: flex;
+  align-items: center;
+}
+
+.header-image {
+  height: 100%; /* Match the height of the header */
+  padding-left: 10px; /* Optional padding for spacing */
+}
+
+
 .logo-img {
-  height: 40px; /* Adjust size as needed */
-  margin-right: 10px; /* Spacing between logo and title */
+  height: 50px; /* Adjust size as needed */
+  margin-right: 15px;
 }
 
 .header h1 {
+  font-size: 4rem;
   margin: 0;
 }
 
-.header nav button {
-  margin: 0 5px;
-  padding: 8px 12px;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
 
-.header nav button:hover {
-  background-color: #21a1f1;
-}
-
+/* Content Styles */
 .content {
-  padding-top: 80px; /* Space for the fixed header */
+  padding-top: 70px; /* Space for the fixed header */
 }
 
 .home-page {
-  text-align: center;
-  padding: 20px;
+  display: flex;
+  justify-content: flex-start; /* Align sneak peek to the right */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 90px;
 }
 
-.home-page h2 {
-  font-size: 24px;
+/* Sneak Peek Styles */
+.sneak-peek {
+  background: linear-gradient(to right, #f3e8ff, #e0f7fa);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+  width: 50%; /* Takes up half the width */
+  max-width: 600px; /* Ensures it doesn't get too wide on large screens */
+
+}
+
+.sneak-peek h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
   color: #333;
-  margin-top: 20px;
+}
+
+.sneak-peek h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.sneak-peek p {
+  color: #555;
+  font-size: 1.25rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .home-page {
+    justify-content: center; /* Center sneak peek on smaller screens */
+    padding: 1.5rem;
+  }
+  .sneak-peek {
+    padding: 2rem;
+    width: 100%; /* Full width on small screens */
+  }
+  .sneak-peek h2 {
+    font-size: 1.75rem;
+  }
+  .sneak-peek h3 {
+    font-size: 1.5rem;
+  }
+  .sneak-peek p {
+    font-size: 1rem;
+  }
 }
 
 

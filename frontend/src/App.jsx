@@ -1,38 +1,59 @@
-import logo from './Edutinity_logo.png'; // Adjust the path if necessary
+import headerImage from './Edutinity_logo.png';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
-import NewsletterPage from './components/NewsletterPage.jsx'; // Import the NewsletterPage component
+import NewsletterPage from './components/NewsletterPage.jsx';
 
 function Header() {
   return (
     <header className="header">
+      <div className="logo-container">
+        <img src={headerImage} alt="Header Left Image" className="header-image" />
+      </div>
       <div className="logo-title">
-        <img src={logo} alt="Edutunity Logo" className="logo-img" />
         <h1>Edutunity</h1>
       </div>
-      <nav>
-        <Link to="/">
-          <button>Home</button>
-        </Link>
-        <Link to="/newsletter">
-          <button>Newsletter</button>
-        </Link>
-      </nav>
     </header>
   );
 }
 
 function AppContent() {
-  const location = useLocation(); // Get the current route location
+  const location = useLocation();
+
+  const posts = [
+    { id: 1, heading: 'First Post', content: 'This is the first post content.', timestamp: '11/1/2024, 10:00 PM' },
+    { id: 2, heading: 'Latest Post', content: 'This is the latest post content.', timestamp: '11/2/2024, 12:00 PM' },
+  ];
+
+  const recentPost = posts.length > 0 ? posts[posts.length - 1] : null;
 
   return (
     <>
-      {/* Conditionally render the header only on the homepage */}
       {location.pathname === '/' && <Header />}
       <main className="content">
         <Routes>
           <Route
             path="/"
+            element={
+              <div className="home-page grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-4 max-w-7xl mx-auto">
+                {/* Left Column: Sneak Peek Section, covering half the page */}
+                {recentPost && (
+                  <div className="sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
+                    <Link to="/newsletter" className="block hover:shadow-xl transition h-full">
+                      <h2 className="text-4xl font-semibold text-gray-800 mb-6">Latest Update</h2>
+                      <h3 className="text-3xl font-bold text-gray-700 mb-4">{recentPost.heading}</h3>
+                      <p className="text-lg text-gray-500 mb-6">{recentPost.timestamp}</p>
+                      <p className="text-xl text-gray-800 whitespace-pre-wrap">
+                        {recentPost.content.slice(0, 200)}... {/* Display a larger snippet */}
+                      </p>
+                      <p className="text-indigo-600 mt-6 text-2xl font-semibold">Read more →</p>
+                    </Link>
+                  </div>
+                )}
+
+                {/* Right Column: Blank Space */}
+                <div className="hidden md:block"></div>
+              </div>
+            }
           />
           <Route path="/newsletter" element={<NewsletterPage />} />
         </Routes>
