@@ -2,8 +2,8 @@ import AIResponse from "./AiResponse";
 import Footer from "./Footer";
 import Header from "./Header";
 import SubjectSelector from "./SubjectSelect";
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import ReactMarkdown from 'react-markdown';
 
 export default function LessonPlannerChatbox() {
   const [subject, setSubject] = useState("");
@@ -18,7 +18,6 @@ export default function LessonPlannerChatbox() {
       setIsLoading(true);
       try {
         console.log("Fetching AI response...");
-        // Update the body to send 'prompt' instead of 'subject'
         const response = await fetch("http://localhost:3000/api/lesson", {
             method: "POST",
             headers: {
@@ -55,6 +54,8 @@ export default function LessonPlannerChatbox() {
   };
 
   return (
+          //<p>{aiResponse}</p>
+           // <AIResponse response={aiResponse} isLoading={isLoading} />
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl overflow-hidden">
         <Header />
@@ -64,8 +65,7 @@ export default function LessonPlannerChatbox() {
             onSubjectChange={handleSubjectChange}
             isLoading={isLoading}
           />
-          <p>{aiResponse}</p>
-          <AIResponse response={aiResponse} isLoading={isLoading} />
+          <ReactMarkdown>{aiResponse}</ReactMarkdown>
         </div>
         <Footer />
       </div>
