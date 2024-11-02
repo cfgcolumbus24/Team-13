@@ -19,7 +19,9 @@ dist-ssr
 *.sln
 *.sw?
 .env
-pathways.txt
+
+server/team-13-cfg/backend/pathways.txt
+
 firebase-debug.log*
 firebase-debug.*.log*
 .firebase/
