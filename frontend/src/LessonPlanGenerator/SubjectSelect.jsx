@@ -1,7 +1,7 @@
 // components/LessonPlanGenerator/SubjectSelect.jsx
- 
+
 // eslint-disable-next-line react/prop-types
-export default function SubjectSelect({ subject, onSubjectChange }) {
+export default function SubjectSelect({ subject, onSubjectChange, isLoading }) {
   return (
     <div className="flex flex-col sm:flex-row items-center gap-4">
       <p className="text-lg font-medium text-gray-700">
@@ -18,6 +18,9 @@ export default function SubjectSelect({ subject, onSubjectChange }) {
         <option value="reading">Reading</option>
         <option value="writing">Writing</option>
       </select>
+      {isLoading && (
+        <div className="ml-2 text-sm text-blue-600">Generating plan...</div>
+      )}
     </div>
   );
 }

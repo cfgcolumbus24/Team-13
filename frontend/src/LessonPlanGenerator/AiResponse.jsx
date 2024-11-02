@@ -1,6 +1,6 @@
 // components/LessonPlanGenerator/AiResponse.jsx
 // eslint-disable-next-line react/prop-types
-export default function AiResponse({ subject, aiResponse }) {
+export default function AiResponse({ subject, aiResponse, isLoading }) {
   if (!subject) return null;
 
   // text for when we request an Ai response
@@ -10,7 +10,11 @@ export default function AiResponse({ subject, aiResponse }) {
       <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
         AI Generated Lesson Plan
       </h3>
-      <p className="text-gray-600 whitespace-pre-line">{aiResponse}</p>
+      {isLoading ? (
+        <p className="text-gray-600">Generating your lesson plan...</p>
+      ) : (
+        <p className="text-gray-600 whitespace-pre-line">{aiResponse}</p>
+      )}
     </div>
   );
 }
