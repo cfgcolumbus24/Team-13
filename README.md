@@ -26,6 +26,3 @@ A customizable newsletter feature that allows users to stay updated with the lat
 ### 3. Forum Community 💬
 
 A supportive forum where teachers and students can connect, share experiences, discuss challenges, and provide encouragement. This community-driven approach helps create a collaborative environment focused on education and empowerment.
-=======
-MAIN BRANCH
->>>>>>> 7959288 (conflicting main branches)
