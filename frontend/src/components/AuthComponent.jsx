@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { registerUser } from '../../authService';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const AuthComponent = () => {
     const [username, setUsername] = useState('');
     const [pin, setPin] = useState('');
     const [role, setRole] = useState('teacher'); // Default to 'teacher'
     const [error, setError] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -14,6 +16,7 @@ const AuthComponent = () => {
         try {
             await registerUser(username, pin, role);
             alert('User registered successfully!');
+            navigate('/login'); // Redirect to the login page
         } catch (err) {
             setError('An error occurred. Please try again.');
         }
