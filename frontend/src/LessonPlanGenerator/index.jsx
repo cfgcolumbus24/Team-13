@@ -17,8 +17,10 @@ export default function LessonPlannerChatbox() {
     if (selectedSubject) {
       setIsLoading(true);
       try {
+        console.log("Fetching AI response...");
+        // for now, we're just simulating a request to an AI API
         const response = await fetch(
-          "https://your-ai-api-endpoint.com/generate-lesson-plan",
+          //"https://your-ai-api-endpoint.com/generate-lesson-plan",
           {
             method: "POST",
             headers: {
@@ -34,16 +36,23 @@ export default function LessonPlannerChatbox() {
 
         const data = await response.json();
         setAiResponse(data.lessonPlan);
+
+        console.log("Lesson plan generated successfully:", data.lessonPlan);
       } catch (error) {
         console.error("Error fetching AI response:", error);
         setAiResponse(
           "Sorry, there was an error generating the lesson plan. Please try again."
+        );
+        console.log(
+          "Error occurred while generating lesson plan:",
+          error.message
         );
       } finally {
         setIsLoading(false);
       }
     } else {
       setAiResponse("");
+      console.log("No subject selected, cleared AI response");
     }
   };
 
