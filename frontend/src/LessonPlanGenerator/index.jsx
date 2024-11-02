@@ -4,7 +4,7 @@ import Header from "./Header";
 import SubjectSelector from "./SubjectSelect";
 import React, { useState } from "react";
 import ReactMarkdown from 'react-markdown';
-import './../App.css'
+import './../App.css';
 
 export default function LessonPlannerChatbox() {
   const [subject, setSubject] = useState("");
@@ -16,53 +16,22 @@ export default function LessonPlannerChatbox() {
   const handleSubjectChange = async (event) => {
     const selectedSubject = event.target.value;
     setSubject(selectedSubject);
-
     if (selectedSubject) {
-      setIsLoading(true);
-      try {
-        console.log("Fetching AI response...");
-        const response = await fetch("http://localhost:3000/api/lesson", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ prompt: selectedSubject }),
-        });
-
-        if (!response.ok) {
-          throw new Error("API request failed");
-        }
-
-        const data = await response.json();
-        const txt = data.data;
-        setAiResponse(txt);
-
-        console.log("Lesson plan generated successfully:", txt);
-      } catch (error) {
-        console.error("Error fetching AI response:", error);
-        setAiResponse("Sorry, there was an error generating the lesson plan. Please try again.");
-      } finally {
-        setIsLoading(false);
-      }
-    } else {
-      setAiResponse("");
-      console.log("No subject selected, cleared AI response");
+      setAiResponse(""); // Clear previous AI response when subject changes
     }
   };
 
-  const handleFeedbackSubmit = async (event) => {
-    event.preventDefault();
-    if (feedbackPrompt.trim() === "") return;
-
+  const handleGenerate = async () => {
+    if (!subject) return; // Don't proceed if no subject is selected
     setIsLoading(true);
     try {
-      console.log("Fetching feedback...");
-      const response = await fetch("http://localhost:3000/api/giveFeedback", { // Updated to use new endpoint
+      console.log("Fetching AI response...");
+      const response = await fetch("http://localhost:3000/api/lesson", {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
           },
-          body: JSON.stringify({ prompt: feedbackPrompt }),
+          body: JSON.stringify({ prompt: subject }),
       });
 
       if (!response.ok) {
@@ -72,7 +41,37 @@ export default function LessonPlannerChatbox() {
       const data = await response.json();
       const txt = data.data;
       setAiResponse(txt);
+      console.log("Lesson plan generated successfully:", txt);
+    } catch (error) {
+      console.error("Error fetching AI response:", error);
+      setAiResponse("Sorry, there was an error generating the lesson plan. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  const handleFeedbackSubmit = async (event) => {
+    event.preventDefault();
+    if (feedbackPrompt.trim() === "" || subject.trim() === "") return; // Ensure both prompt and subject are checked
+
+    setIsLoading(true);
+    try {
+      console.log("Fetching feedback...");
+      const response = await fetch("http://localhost:3000/api/giveFeedback", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: feedbackPrompt, subject }), // Include subject in the body
+      });
+
+      if (!response.ok) {
+        throw new Error("API request failed");
+      }
+
+      const data = await response.json();
+      const txt = data.data;
+      setAiResponse(txt);
       console.log("Feedback received successfully:", txt);
     } catch (error) {
       console.error("Error fetching feedback:", error);
@@ -90,13 +89,19 @@ export default function LessonPlannerChatbox() {
           <div className="tabs">
             <button 
               className={`tab ${activeTab === "generate" ? "active" : ""}`}
-              onClick={() => setActiveTab("generate")}
+              onClick={() => {
+                setActiveTab("generate");
+                setAiResponse(""); // Clear response when switching tabs
+              }}
             >
               Generate Lesson Plan
             </button>
             <button 
               className={`tab ${activeTab === "feedback" ? "active" : ""}`}
-              onClick={() => setActiveTab("feedback")}
+              onClick={() => {
+                setActiveTab("feedback");
+                setAiResponse(""); // Clear response when switching tabs
+              }}
             >
               Get Feedback
             </button>
@@ -109,12 +114,24 @@ export default function LessonPlannerChatbox() {
                 onSubjectChange={handleSubjectChange}
                 isLoading={isLoading}
               />
+              <button
+                onClick={handleGenerate}
+                className="mt-2 bg-blue-500 text-white rounded px-4 py-2"
+                disabled={isLoading}
+              >
+                Generate Lesson Plan
+              </button>
               <ReactMarkdown>{aiResponse}</ReactMarkdown>
             </>
           )}
 
           {activeTab === "feedback" && (
             <>
+              <SubjectSelector
+                subject={subject}
+                onSubjectChange={handleSubjectChange}
+                isLoading={isLoading}
+              />
               <form onSubmit={handleFeedbackSubmit}>
                 <textarea
                   value={feedbackPrompt}

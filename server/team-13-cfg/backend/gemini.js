@@ -39,12 +39,12 @@ export async function processLessonPlan(subject) {
     }
 }
 
-export async function giveFeedback(feedbackPrompt) {
+export async function giveFeedback(feedbackPrompt, subject) {
     const filePath = path.join(__dirname, 'pathways.txt');
 
     try {
         const context = await readTextFile(filePath);
-        const feedbackQuestion = `Provide feedback on the following lesson plan: "${feedbackPrompt}"`;
+        const feedbackQuestion = `Provide feedback on the following lesson plan in ${subject}: "${feedbackPrompt}"`;
         const feedback = await callGoogleGeminiAPI(context, feedbackQuestion);
         return feedback;
     } catch (err) {

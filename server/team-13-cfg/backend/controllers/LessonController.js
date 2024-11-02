@@ -17,12 +17,12 @@ export const processLesson = async (req, res) => {
 
 export const processFeedback = async (req, res) => {
     try {
-        const { prompt } = req.body; 
-        if (!prompt) {
-            return res.status(400).json({ success: false, message: 'Prompt is required.' });
+        const { prompt, subject } = req.body; 
+        if (!prompt || !subject) {
+            return res.status(400).json({ success: false, message: 'Prompt and subject are required.' });
         }
 
-        const feedback = await giveFeedback(prompt);
+        const feedback = await giveFeedback(prompt, subject);
         res.status(200).json({ success: true, data: feedback });
     } catch (error) {
         console.error('Error processing feedback:', error);
