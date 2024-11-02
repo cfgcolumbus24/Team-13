@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 const PostForm = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [category, setCategory] = useState('');
     const navigate = useNavigate(); // Initialize useNavigate
 
     const handleSubmit = async (e) => {
@@ -21,6 +22,7 @@ const PostForm = () => {
             await addDoc(collection(db, "posts"), {
                 title: title,
                 content: content,
+                category: category,
                 createdAt: new Date(),
                 author: user.username,
             });
@@ -66,6 +68,23 @@ const PostForm = () => {
                             rows="5"
                         />
                     </div>
+
+                    <div>
+                        <label className="block text-gray-700 mb-2">Category</label>
+                        <select
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            required
+                            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        >
+                            <option value="" disabled>Select a category</option>
+                            <option value="Math">Math</option>
+                            <option value="Science">Science</option>
+                            <option value="Reading">Reading</option>
+                            <option value="Writing">Music</option>
+                        </select>
+                    </div>
+                    
                     <button type="submit" className="w-full py-2 text-base font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">
                         Create Post
                     </button>
