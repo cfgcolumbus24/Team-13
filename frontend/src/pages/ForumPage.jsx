@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import Navbar from '../components/Navbar';
 
 const ForumPage = () => {
     const [posts, setPosts] = useState([]);
@@ -32,6 +33,7 @@ const ForumPage = () => {
 
     return (
         <div className="p-4 max-w-4xl mx-auto">
+            <Navbar />
             <h1 className="text-2xl font-semibold mb-6">Forum Posts</h1>
             
             {/* Button to create a new post */}

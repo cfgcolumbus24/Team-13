@@ -1,6 +1,7 @@
 // Imports
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 // Page Components
 import NewsletterPage from './components/NewsletterPage';
@@ -17,10 +18,11 @@ import headerImage from './Edutinity_logo.png';
 function Header() {
   return (
     <header className="header flex justify-center items-center bg-gray-800 text-white py-6">
-      <div className="logo-container flex flex-col items-center">
+      <Navbar />
+      <div className="logo-container flex flex-col items-center" style={{ marginTop: '30px' }}>
         <img src={headerImage} alt="Edutunity Logo" className="logo h-24" />
         <h1 className="text-3xl font-bold mt-2">Edutunity</h1>
-      </div>
+    </div>
     </header>
   );
 }
