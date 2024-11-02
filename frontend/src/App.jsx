@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import logo from './Edutinity_logo.png'; // Adjust the path if necessary
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
 import NewsletterPage from './components/NewsletterPage.jsx'; // Import the NewsletterPage component
 
 function Header() {
   return (
     <header className="header">
-      <h1>Edutunity</h1>
+      <div className="logo-title">
+        <img src={logo} alt="Edutunity Logo" className="logo-img" />
+        <h1>Edutunity</h1>
+      </div>
       <nav>
         <Link to="/">
           <button>Home</button>
@@ -22,7 +23,6 @@ function Header() {
 }
 
 function AppContent() {
-  const [count, setCount] = useState(0);
   const location = useLocation(); // Get the current route location
 
   return (

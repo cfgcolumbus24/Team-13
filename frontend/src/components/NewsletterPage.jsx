@@ -39,7 +39,7 @@ function NewsletterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center">
       {/* Fixed Header */}
       <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed top-0 left-0 w-full z-50">
         <h1 className="text-5xl font-extrabold text-center text-white">Newsletter</h1>

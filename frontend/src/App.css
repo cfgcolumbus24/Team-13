@@ -19,6 +19,11 @@ body, html {
   z-index: 1000;
 }
 
+.logo-img {
+  height: 40px; /* Adjust size as needed */
+  margin-right: 10px; /* Spacing between logo and title */
+}
+
 .header h1 {
   margin: 0;
 }
@@ -50,3 +55,5 @@ body, html {
   color: #333;
   margin-top: 20px;
 }
+
+
