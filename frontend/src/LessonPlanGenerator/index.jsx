@@ -1,9 +1,9 @@
-import AIResponse from "./AIResponse";
+import AIResponse from "./AiResponse";
 import Footer from "./Footer";
 import Header from "./Header";
 import SubjectSelector from "./SubjectSelect";
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import ReactMarkdown from 'react-markdown';
 
 export default function LessonPlannerChatbox() {
   const [subject, setSubject] = useState("");
@@ -18,24 +18,21 @@ export default function LessonPlannerChatbox() {
       setIsLoading(true);
       try {
         console.log("Fetching AI response...");
-        // for now, we're just simulating a request to an AI API
-        const response = await fetch(
-          //"https://your-ai-api-endpoint.com/generate-lesson-plan",
-          {
+        const response = await fetch("http://localhost:3000/api/lesson", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ subject: selectedSubject }),
-          }
-        );
+            body: JSON.stringify({ prompt: selectedSubject }), // Send 'prompt' here
+        });
 
         if (!response.ok) {
           throw new Error("API request failed");
         }
 
         const data = await response.json();
-        setAiResponse(data.lessonPlan);
+        const txt = data.data;
+        setAiResponse(txt);
 
         console.log("Lesson plan generated successfully:", data.lessonPlan);
       } catch (error) {
@@ -57,6 +54,8 @@ export default function LessonPlannerChatbox() {
   };
 
   return (
+          //<p>{aiResponse}</p>
+           // <AIResponse response={aiResponse} isLoading={isLoading} />
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl overflow-hidden">
         <Header />
@@ -66,7 +65,7 @@ export default function LessonPlannerChatbox() {
             onSubjectChange={handleSubjectChange}
             isLoading={isLoading}
           />
-          <AIResponse response={aiResponse} isLoading={isLoading} />
+          <ReactMarkdown>{aiResponse}</ReactMarkdown>
         </div>
         <Footer />
       </div>

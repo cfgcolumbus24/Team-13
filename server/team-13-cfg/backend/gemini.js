@@ -20,18 +20,19 @@ function readTextFile(filePath) {
     });
 }
 
-async function callGoogleGeminiAPI(context, question) {
+async function callGoogleGeminiAPI(context, subject) {
+    const question = `make a 1000 word lesson plan using the context pdf for 4th graders studying ${subject}. use plain text and paragraphs`
     const result = await model.generateContent([context, question]); 
     const txt = result.response.text(); 
     return txt;
 }
 
-export async function processLessonPlan(question) {
+export async function processLessonPlan(subject) {
     const filePath = path.join(__dirname, 'pathways.txt');
     
     try {
         const context = await readTextFile(filePath);
-        const lessonPlan = await callGoogleGeminiAPI(context, question);
+        const lessonPlan = await callGoogleGeminiAPI(context, subject);
         return lessonPlan;
     } catch (err) {
         console.error('Error:', err);

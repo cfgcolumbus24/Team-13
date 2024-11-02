@@ -8,6 +8,7 @@ export const processLesson = async (req, res) => {
         }
 
         const lessonPlan = await processLessonPlan(prompt);
+        console.log("Generated Lesson Plan:", lessonPlan); 
         res.status(200).json({ success: true, data: lessonPlan });
     } catch (error) {
         console.error('Error processing lesson plan:', error);
