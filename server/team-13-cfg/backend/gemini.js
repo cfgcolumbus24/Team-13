@@ -38,3 +38,16 @@ export async function processLessonPlan(subject) {
         console.error('Error:', err);
     }
 }
+
+export async function giveFeedback(feedbackPrompt) {
+    const filePath = path.join(__dirname, 'pathways.txt');
+
+    try {
+        const context = await readTextFile(filePath);
+        const feedbackQuestion = `Provide feedback on the following lesson plan: "${feedbackPrompt}"`;
+        const feedback = await callGoogleGeminiAPI(context, feedbackQuestion);
+        return feedback;
+    } catch (err) {
+        console.error('Error:', err);
+    }
+}
