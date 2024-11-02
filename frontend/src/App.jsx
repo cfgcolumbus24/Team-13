@@ -36,7 +36,7 @@ function AppContent() {
             path="/"
             element={
               <div className="home-page grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-4 max-w-7xl mx-auto">
-                {/* Sneak Peek Section */}
+                {/* First Row: Two Sneak Peek Boxes */}
                 <div className="sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
                   <Link to="/newsletter" className="block hover:shadow-xl transition h-full">
                     {recentPost ? (
@@ -60,9 +60,19 @@ function AppContent() {
                     )}
                   </Link>
                 </div>
+                
+                <div className="sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
+                  <h2 className="text-4xl font-semibold text-gray-800 mb-6">Forum</h2>
+                </div>
 
-                {/* Right Column: Blank Space */}
-                <div className="hidden md:block"></div>
+                {/* Second Row: Full-Width Sneak Peek Box */}
+                <div className="md:col-span-2 sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
+                  <h2 className="text-4xl font-semibold text-gray-800 mb-6">Additional Sneak Peek</h2>
+                  <p className="text-lg text-gray-500 mb-6">
+                      Here is some additional content. Check back soon for more exciting updates!
+                  </p>
+                 <p className="text-indigo-600 mt-6 text-2xl font-semibold">Discover more →</p>
+                </div>
               </div>
             }
           />
