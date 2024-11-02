@@ -70,14 +70,14 @@ function HomePage({ recentPost }) {
           content={<p className="text-lg text-gray-500">Join discussions and explore various topics in our community forum.</p>}
         />
         <SneakPeekBox
-          title="Additional Sneak Peek"
-          link="/additional-content"
+          title="Forum"
+          link="/forum"
           content={
             <>
               <p className="text-lg text-gray-500 mb-4">
-                Here is some additional content. Check back soon for more exciting updates!
+                Access the forums to ask and answer questions.
               </p>
-              <p className="text-indigo-600 font-semibold">Discover more →</p>
+              <p className="text-indigo-600 font-semibold">Go to the forum →</p>
             </>
           }
         />
