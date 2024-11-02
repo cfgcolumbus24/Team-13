@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from './Navbar';
 
 function NewsletterPage() {
   const [postHeading, setPostHeading] = useState('');
@@ -52,7 +53,8 @@ function NewsletterPage() {
 
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed top-0 left-0 w-full z-50">
+      <Navbar />
+      <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed left-0 w-full z-50 mt-10"> {/* mt-8 is equal to 2rem, adjust as necessary */}
         <h1 className="text-5xl font-extrabold text-center text-white">Newsletter</h1>
         <p className="text-lg text-center text-white opacity-75 mt-2">Stay updated with our weekly posts</p>
       </header>
