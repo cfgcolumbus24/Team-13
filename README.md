@@ -2,6 +2,7 @@
 
 # Edutunity - Empowering Equal Education (3E Project)
 
+<<<<<<< HEAD
 Edutunity is a web platform designed to support teachers of underrepresented communities by providing essential resources, AI-powered assistance, and a supportive forum. With a focus on increasing teacher retention rates, Edutunity offers tools to facilitate a more inclusive and supportive educational experience.
 
 ## 🎯 Project Goals
@@ -25,3 +26,6 @@ A customizable newsletter feature that allows users to stay updated with the lat
 ### 3. Forum Community 💬
 
 A supportive forum where teachers and students can connect, share experiences, discuss challenges, and provide encouragement. This community-driven approach helps create a collaborative environment focused on education and empowerment.
+=======
+MAIN BRANCH
+>>>>>>> 7959288 (conflicting main branches)
