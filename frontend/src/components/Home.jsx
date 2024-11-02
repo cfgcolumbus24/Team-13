@@ -8,7 +8,7 @@ import headerImage from '../Edutinity_logo.png';
 
 function Header() {
   return (
-    <header className="header flex justify-center items-center bg-gray-800 text-white py-6">
+    <header className="header flex justify-center items-center bg-gray-800 text-white py-6 mt-14">
       <div className="logo-container flex flex-col items-center">
         <img src={headerImage} alt="Edutunity Logo" className="logo h-24" />
         <h1 className="text-3xl font-bold mt-2">Edutunity</h1>

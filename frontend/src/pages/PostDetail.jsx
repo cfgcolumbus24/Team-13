@@ -65,7 +65,7 @@ const PostDetail = ({ user }) => { // Accept user prop
     return (
         <div className="p-4 max-w-4xl mx-auto">
             <Navbar />
-            <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
+            <h1 className="text-2xl font-bold mb-4 mt-20">{post.title}</h1>
             <p className="text-gray-700 mb-4">{post.content}</p>
             <p className="text-sm text-gray-500">
                 {post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleString() : 'No date available'}

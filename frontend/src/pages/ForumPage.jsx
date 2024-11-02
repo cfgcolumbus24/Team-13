@@ -31,7 +31,7 @@ const ForumPage = () => {
 
     return (
         <div className="p-4 max-w-4xl mx-auto">
-            <h1 className="text-2xl font-semibold mb-6">Forum Posts</h1>
+            <h1 className="text-2xl font-semibold mb-6 mt-14">Forum Posts</h1>
             <div className="space-y-4">
                 {posts.map(post => (
                     <div key={post.id} className="p-4 bg-white shadow-md rounded-lg">
