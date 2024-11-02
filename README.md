@@ -17,7 +17,7 @@ Our main goal is to foster higher retention rates for teachers in underrepresent
 
 ### 1. AI Chat Bot 🤖
 
-A smart chatbot that assists both students and teachers by providing quick responses to frequently asked questions, educational resources, and other essential information.
+A smart chatbot that assists both students and teachers by providing quick responses to frequently asked questions, educational resources, and other essential information. The chatbot also provides templates to streamline lesson planning, helping educators save time and enhance their teaching effectiveness.
 
 ### 2. Newsletter 📰
 
