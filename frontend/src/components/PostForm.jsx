@@ -40,9 +40,9 @@ const PostForm = () => {
     return (
         <div className="min-h-screen flex flex-col items-center bg-gray-100">
             {/* Fixed Header */}
-            <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed top-0 left-0 w-full z-50 mt-10">
-                <h1 className="text-5xl font-extrabold text-center text-white">Create Post</h1>
-                <p className="text-lg text-center text-white opacity-75 mt-2">Share your thoughts</p>
+            <header className="bg-gray-800 p-8 shadow-md fixed top-0 left-0 w-full z-50 mt-10">
+                <h1 className="text-5xl font-extrabold text-center text-pink-600">Create Post</h1>
+                <p className="text-lg text-center text-pink-600 opacity-75 mt-2">Share your thoughts</p>
             </header>
 
             {/* Main Content Area */}
@@ -64,7 +64,7 @@ const PostForm = () => {
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                             required
-                            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"
                             rows="5"
                         />
                     </div>
@@ -75,7 +75,7 @@ const PostForm = () => {
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
                             required
-                            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"
                         >
                             <option value="" disabled>Select a category</option>
                             <option value="Math">Math</option>
@@ -85,7 +85,7 @@ const PostForm = () => {
                         </select>
                     </div>
                     
-                    <button type="submit" className="w-full py-2 text-base font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">
+                    <button type="submit" className="w-full py-2 text-base font-semibold text-white bg-teal-700 rounded-lg hover:bg-teal-700 transition">
                         Create Post
                     </button>
                 </form>

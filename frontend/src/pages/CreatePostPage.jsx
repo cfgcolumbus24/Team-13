@@ -59,7 +59,7 @@ const CategoryForum = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
-          <div className="p-6 bg-gradient-to-r from-blue-600 to-indigo-600">
+          <div className="p-6 bg-pink-600">
             <h2 className="text-3xl font-bold text-white text-center">
               Category-based Questions
             </h2>

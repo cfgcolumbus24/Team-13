@@ -43,7 +43,7 @@ const Login = ({ setUser }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-100">
-      <header className="bg-gradient-to-r from-indigo-600 to-purple-700 p-8 shadow-md fixed top-0 left-0 w-full z-50">
+      <header className="bg-pink-600 p-8 shadow-md fixed top-0 left-0 w-full z-50">
         <h1 className="text-5xl font-extrabold text-center text-white">Login</h1>
         <p className="text-lg text-center text-white opacity-75 mt-2">Access your account</p>
       </header>
@@ -55,28 +55,28 @@ const Login = ({ setUser }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
-            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"
           />
           <input
             type="password"
             value={pin}
             onChange={(e) => setPin(e.target.value)}
             placeholder="PIN"
-            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"
           />
           <div className="flex flex-col">
             <label className="mb-2 text-gray-700">Select Role:</label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full p-3 text-base text-gray-800 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-700"
             >
               <option value="teacher">Teacher</option>
               <option value="proprietor">Proprietor</option>
             </select>
           </div>
           {error && <p className="text-red-500">{error}</p>}
-          <button type="submit" className="w-full py-2 text-base font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition">
+          <button type="submit" className="w-full py-2 text-base font-semibold text-white bg-teal-700 rounded-lg hover:bg-teal-700 transition">
             Login
           </button>
         </form>

@@ -11,7 +11,7 @@ const Navbar = () => {
         top: "0",
         left: "0",
         width: "100%",
-        backgroundColor: "#4f46e5", // Indigo color
+        backgroundColor: "#E0218A", // Indigo color
         color: "white",
         zIndex: 1000, // High z-index to ensure visibility
         display: "flex",
@@ -20,19 +20,19 @@ const Navbar = () => {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+      <Link to="/" style={{ color: "black", textDecoration: "none" }}>
         Home
       </Link>
       <Link
         to="/create-post"
-        style={{ color: "white", textDecoration: "none" }}
+        style={{ color: "black", textDecoration: "none" }}
       >
         Create Post
       </Link>
-      <Link to="/forum" style={{ color: "white", textDecoration: "none" }}>
+      <Link to="/forum" style={{ color: "black", textDecoration: "none" }}>
         Forum
       </Link>
-      <Link to="/newsletter" style={{ color: "white", textDecoration: "none" }}>
+      <Link to="/newsletter" style={{ color: "black", textDecoration: "none" }}>
         Newsletter
       </Link>
     </nav>
