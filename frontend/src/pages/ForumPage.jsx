@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
+import { Link } from 'react-router-dom';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const ForumPage = () => {
@@ -34,7 +35,9 @@ const ForumPage = () => {
             <div className="space-y-4">
                 {posts.map(post => (
                     <div key={post.id} className="p-4 bg-white shadow-md rounded-lg">
-                        <h2 className="text-lg font-bold">{post.title}</h2>
+                        <Link to={`/forum/${post.id}`} className="text-lg font-bold text-blue-500 hover:underline">
+                            {post.title}
+                        </Link>
                         <p className="text-gray-700">{post.content}</p>
                         <p className="text-sm text-gray-500 mt-2">
                             {post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleString() : 'No date available'}
