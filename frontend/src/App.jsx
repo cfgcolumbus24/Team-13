@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import headerImage from './Edutinity_logo.png';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
@@ -18,13 +19,13 @@ function Header() {
 
 function AppContent() {
   const location = useLocation();
+  const [recentPost, setRecentPost] = useState(null);
 
-  const posts = [
-    { id: 1, heading: 'First Post', content: 'This is the first post content.', timestamp: '11/1/2024, 10:00 PM' },
-    { id: 2, heading: 'Latest Post', content: 'This is the latest post content.', timestamp: '11/2/2024, 12:00 PM' },
-  ];
-
-  const recentPost = posts.length > 0 ? posts[posts.length - 1] : null;
+  // Load the latest post from localStorage
+  useEffect(() => {
+    const latestPost = JSON.parse(localStorage.getItem('latestPost'));
+    setRecentPost(latestPost);
+  }, [location.pathname]); // Re-fetch the latest post if the route changes
 
   return (
     <>
@@ -35,7 +36,7 @@ function AppContent() {
             path="/"
             element={
               <div className="home-page grid grid-cols-1 md:grid-cols-2 gap-4 px-4 py-4 max-w-7xl mx-auto">
-                {/* Left Column: Sneak Peek Section, covering half the page */}
+                {/* Left Column: Sneak Peek Section */}
                 {recentPost && (
                   <div className="sneak-peek bg-gradient-to-r from-purple-100 to-indigo-100 p-8 rounded-lg shadow-lg h-full">
                     <Link to="/newsletter" className="block hover:shadow-xl transition h-full">
