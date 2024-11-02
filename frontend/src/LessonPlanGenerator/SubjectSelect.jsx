@@ -1,6 +1,5 @@
 // components/LessonPlanGenerator/SubjectSelect.jsx
-// eslint-disable-next-line react/prop-types
-
+ 
 // eslint-disable-next-line react/prop-types
 export default function SubjectSelect({ subject, onSubjectChange }) {
   return (

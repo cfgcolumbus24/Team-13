@@ -1,5 +1,5 @@
 // components/LessonPlannerChatbox/index.jsx
-// eslint-disable-next-line no-unused-vars
+ 
 import AiResponse from "./AiResponse";
 import Footer from "./Footer";
 import Header from "./Header";
