@@ -3,6 +3,8 @@ import { db } from '../../firebase';
 import { Link } from 'react-router-dom';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
+import ReactMarkdown from 'react-markdown';
+
 const ForumPage = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -39,7 +41,7 @@ const ForumPage = () => {
                             {post.title}
                             <p className="text-gray-700">{post.category}</p>
                         </Link>
-                        <p className="text-gray-700">{post.content}</p>
+                        <p className="text-gray-700"><ReactMarkdown>{post.content}</ReactMarkdown></p>
                         <p className="text-sm text-gray-500 mt-2">
                             {post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleString() : 'No date available'}
                         </p>
