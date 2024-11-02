@@ -1,4 +1,4 @@
-import AIResponse from "./AIResponse";
+import AIResponse from "./AiResponse";
 import Footer from "./Footer";
 import Header from "./Header";
 import SubjectSelector from "./SubjectSelect";
@@ -18,24 +18,22 @@ export default function LessonPlannerChatbox() {
       setIsLoading(true);
       try {
         console.log("Fetching AI response...");
-        // for now, we're just simulating a request to an AI API
-        const response = await fetch(
-          //"https://your-ai-api-endpoint.com/generate-lesson-plan",
-          {
+        // Update the body to send 'prompt' instead of 'subject'
+        const response = await fetch("http://localhost:3000/api/lesson", {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ subject: selectedSubject }),
-          }
-        );
+            body: JSON.stringify({ prompt: selectedSubject }), // Send 'prompt' here
+        });
 
         if (!response.ok) {
           throw new Error("API request failed");
         }
 
         const data = await response.json();
-        setAiResponse(data.lessonPlan);
+        const txt = data.data;
+        setAiResponse(txt);
 
         console.log("Lesson plan generated successfully:", data.lessonPlan);
       } catch (error) {
@@ -66,6 +64,7 @@ export default function LessonPlannerChatbox() {
             onSubjectChange={handleSubjectChange}
             isLoading={isLoading}
           />
+          <p>{aiResponse}</p>
           <AIResponse response={aiResponse} isLoading={isLoading} />
         </div>
         <Footer />
