@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../../firebase'; // Ensure this path is correct
 import { doc, getDoc, collection, getDocs, query, orderBy, addDoc } from 'firebase/firestore';
+import Navbar from '../components/Navbar';
 
 const PostDetail = ({ user }) => { // Accept user prop
     const { postId } = useParams();
@@ -63,6 +64,7 @@ const PostDetail = ({ user }) => { // Accept user prop
 
     return (
         <div className="p-4 max-w-4xl mx-auto">
+            <Navbar />
             <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
             <p className="text-gray-700 mb-4">{post.content}</p>
             <p className="text-sm text-gray-500">

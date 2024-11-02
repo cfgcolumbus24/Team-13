@@ -1,6 +1,7 @@
 // App.jsx
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import { db } from '../firebase'; // Ensure this points to your Firebase configuration
 import Home from './components/Home';
 import Login from './components/Login'; // Import your Login component
@@ -13,6 +14,7 @@ import CreatePostPage from './pages/CreatePostPage';
 import PostForm from './components/PostForm';
 
 export default function App() {
+
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -26,8 +28,10 @@ export default function App() {
   };
 
   return (
+
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <Navbar/>
         <Routes>
           {/* Always render the login page */}
           <Route path="/" element={<Login setUser={setUser} />} />

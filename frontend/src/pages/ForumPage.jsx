@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { Link } from 'react-router-dom';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import Navbar from '../components/Navbar';
 
 const ForumPage = () => {
     const [posts, setPosts] = useState([]);
@@ -31,6 +32,7 @@ const ForumPage = () => {
 
     return (
         <div className="p-4 max-w-4xl mx-auto">
+            <Navbar />
             <h1 className="text-2xl font-semibold mb-6">Forum Posts</h1>
             <div className="space-y-4">
                 {posts.map(post => (
