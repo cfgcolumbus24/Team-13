@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #root {
+#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -18,55 +18,55 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 /* Sneak Peek Styles */
 .sneak-peek {
   background: linear-gradient(to right, #f3e8ff, #e0f7fa);
-  padding: 3rem;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 0.3s ease;
-  width: 50%; /* Takes up half the width */
-  max-width: 600px; /* Ensures it doesn't get too wide on large screens */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  max-width: 500px;
+  width: 100%;
+}
 
+.sneak-peek:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03);
 }
 
 .sneak-peek h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.sneak-peek h3 {
   font-size: 2rem;
   font-weight: bold;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sneak-peek h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
 .sneak-peek p {
   color: #555;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .home-page {
-    justify-content: center; /* Center sneak peek on smaller screens */
-    padding: 1.5rem;
+    padding: 1rem;
   }
   .sneak-peek {
-    padding: 2rem;
-    width: 100%; /* Full width on small screens */
+    padding: 1.5rem;
   }
   .sneak-peek h2 {
     font-size: 1.75rem;
   }
   .sneak-peek h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   .sneak-peek p {
     font-size: 1rem;
